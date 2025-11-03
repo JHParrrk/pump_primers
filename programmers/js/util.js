@@ -7,11 +7,15 @@ export function toHidden(node) {
 }
 
 export function validatePrice(currentFunds, currentAmount) {
-  // TODO: 금액이 현재 자산보다 이하인지
-  return true;
+  // 금액이 현재 자산보다 이하인지
+  return Number(currentAmount) <= Number(currentFunds);
 }
 
 export function validateRequired({ category, description, price }) {
-  // TODO: 값이 존재하는지
-  return true;
+  // 값이 존재하는지
+  return category && description && price;
+}
+
+export function formatNumberWithComma(number) {
+  return Number(number).toLocaleString('ko-KR');
 }
