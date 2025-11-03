@@ -28,9 +28,9 @@ function addCurrentAssetEventListener() {
     toShow($addItemButton);
 
     store.currentFunds = Number($currentAssetInput.value);
-    renderCurrentAsset();
-
     store.isFirstEdit = false;
+    
+    renderCurrentAsset();
 
     updateStorage();
   });
@@ -39,7 +39,7 @@ function addCurrentAssetEventListener() {
 export function renderCurrentAsset() {
   // 숫자에 콤마 작성
   // currentFunds가 없는 경우
-  if (store.currentFunds > 0) {
+  if (store.currentFunds != null && !store.isFirstEdit) {
     $currentAssetValue.textContent = formatNumberWithComma(store.currentFunds);
   } else {
     $currentAssetValue.textContent = "-";

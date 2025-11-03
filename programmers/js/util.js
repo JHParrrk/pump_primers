@@ -13,7 +13,7 @@ export function validatePrice(currentFunds, currentAmount) {
 
 export function validateRequired({ category, description, price }) {
   // 값이 존재하는지
-  return category && description && price;
+  return category !== '' && description !== '' && price !== '';
 }
 
 export function formatNumberWithComma(number) {
