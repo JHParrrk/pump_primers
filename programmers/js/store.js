@@ -34,8 +34,11 @@ export function updateStorage() {
 }
 
 export function initStore() {
-  const storage = sessionStorage.getItem("store");
-  if (!storage) updateStorage();
+  let storage = sessionStorage.getItem("store");
+  if (!storage) {
+    updateStorage();
+    storage = sessionStorage.getItem("store");
+  }
 
   const { dateList, detailList, todayId, currentFunds, isFirstEdit } =
     JSON.parse(storage);
