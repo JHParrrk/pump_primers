@@ -1,6 +1,6 @@
-import { renderCurrentAsset } from "../components/current-asset";
-import { store, removeHistory } from "../store";
-import { formatNumberWithComma } from "../util";
+import { renderCurrentAsset } from "../components/current-asset.js";
+import { store, removeHistory } from "../store.js";
+import { formatNumberWithComma } from "../util.js";
 
 const $sectionHistory = document.querySelector(".history");
 
@@ -33,8 +33,8 @@ function reRender() {
 
 function formatTime(date) {
   const dateObj = new Date(date);
-  const hours = String(dateObj.getHours()).padStart(2, '0');
-  const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+  const hours = String(dateObj.getHours()).padStart(2, "0");
+  const minutes = String(dateObj.getMinutes()).padStart(2, "0");
   return `${hours}:${minutes}`;
 }
 
@@ -58,7 +58,9 @@ export function renderHistoryList() {
       if (!detail?.length) return "";
 
       // 오름차순으로 정렬 (createAt 기준)
-      const sortedDetail = [...detail].sort((a, b) => new Date(a.createAt) - new Date(b.createAt));
+      const sortedDetail = [...detail].sort(
+        (a, b) => new Date(a.createAt) - new Date(b.createAt)
+      );
 
       const itemsHtml = sortedDetail
         .map((item) => {
@@ -78,7 +80,9 @@ export function renderHistoryList() {
             </div>
           </div>
           <div class="delete-section">
-            <button class="delete-button" data-dateid="${dateId}" data-itemid="${item.id}">🗑</button>
+            <button class="delete-button" data-dateid="${dateId}" data-itemid="${
+            item.id
+          }">🗑</button>
           </div>
         </section>
         <section class="history-item-caption">

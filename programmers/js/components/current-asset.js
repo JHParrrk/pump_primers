@@ -1,5 +1,5 @@
-import { store, updateStorage } from "../store";
-import { toHidden, toShow, formatNumberWithComma } from "../util";
+import { store, updateStorage } from "../store.js";
+import { toHidden, toShow, formatNumberWithComma } from "../util.js";
 
 const $currentAssetInput = document.querySelector(".current-asset-input");
 const $currentAssetValue = document.querySelector(".current-asset-value");
@@ -25,14 +25,18 @@ function addCurrentAssetEventListener() {
     toHidden(event.target);
     toHidden($currentAssetInput);
     toShow($currentAssetValue);
+
+    // isFirstEdit가 false가 된 후에 소비내역 작성 버튼 나타남
+    const $addItemButton = document.querySelector(".add-item-button");
     toShow($addItemButton);
 
+    // 1. 상태(state)를 먼저 변경합니다.
     store.currentFunds = Number($currentAssetInput.value);
     store.isFirstEdit = false;
-    
-    renderCurrentAsset();
-
     updateStorage();
+
+    // 2. 변경된 상태를 기반으로 화면을 다시 그립니다.
+    renderCurrentAsset();
   });
 }
 

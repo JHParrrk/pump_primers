@@ -14,6 +14,8 @@
      }[]
   }
  */
+
+// 기본값 정의
 export const store = {
   currentFunds: 0,
 
@@ -34,20 +36,16 @@ export function updateStorage() {
 }
 
 export function initStore() {
-  let storage = sessionStorage.getItem("store");
-  if (!storage) {
+  const storage = sessionStorage.getItem("store");
+
+  if (storage) {
+    const parsedStorage = JSON.parse(storage);
+    // Object.assign을 사용해 sessionStorage의 값으로 기존 store 객체를 덮어씁니다.
+    Object.assign(store, parsedStorage);
+  } else {
+    // sessionStorage에 값이 없으면, 현재 store의 기본값으로 storage를 생성합니다.
     updateStorage();
-    storage = sessionStorage.getItem("store");
   }
-
-  const { dateList, detailList, todayId, currentFunds, isFirstEdit } =
-    JSON.parse(storage);
-
-  store.currentFunds = currentFunds;
-  store.isFirstEdit = isFirstEdit;
-  store.dateList = dateList;
-  store.detailList = detailList;
-  store.todayId = todayId;
 }
 
 export function addNewHistory(newHistory) {
