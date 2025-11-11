@@ -1,4 +1,4 @@
-import { renderCurrentAsset } from "../components/current-asset.js";
+import { renderCurrentAsset } from "./current-asset.js";
 import { store, removeHistory } from "../store.js";
 import { formatNumberWithComma } from "../util.js";
 
